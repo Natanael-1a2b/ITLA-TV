@@ -1,0 +1,38 @@
+﻿@model Logica_de_Negocio.ViewModels.SerieViewModel
+
+@{
+    ViewData["Title"] = "Detalles de la Serie";
+}
+
+<div class="container text-white">
+    <div class="row text-center">
+        <h1>@Model.name</h1>
+    </div>
+    <div class="row justify-content-center">
+        <img src="@Model.Imagen" style="max-width: 350px;">
+    </div>
+    <div class="row mt-3">
+        <p class="col-6 text-white card bg-dark border-light p-4 fs-5">@Model.description</p>
+        <div class="col-6">
+            <ul class="card bg-dark border-light m-5 p-5 fs-4 ">
+                <li><strong>Productora:</strong> @Model.Productora</li>
+                <li><strong>Generos:</strong> @Model.Genero1 y @Model.Genero2</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container-fluid d-flex justify-content-center aling-content-center ">
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item"
+                        src="@Model.EnlaceYouTube.Replace("watch?v=", "embed/")"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        width="720px;"
+                        height="400px;"
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>

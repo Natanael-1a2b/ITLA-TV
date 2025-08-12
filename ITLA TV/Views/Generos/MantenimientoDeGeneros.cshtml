@@ -1,0 +1,36 @@
+﻿@model List<Logica_de_Negocio.ViewModels.GeneroViewModel>
+
+@{
+    ViewData["Title"] = "Mantenimiento de Géneros";
+}
+
+<div class="container">
+    <h1 class="text-center text-white">Mantenimiento de Géneros</h1>
+
+    <div class="mb-4">
+        <a asp-action="CrearGenero" class="btn btn-success">Crear Nuevo Género</a>
+    </div>
+
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var genero in Model)
+            {
+                <tr>
+                    <td>@genero.name</td>
+                    <td>@genero.description</td>
+                    <td>
+                        <a asp-action="EditarGenero" asp-route-id="@genero.IdGenero" class="btn btn-primary">Editar</a>
+                        <a asp-action="EliminarGenero" asp-route-id="@genero.IdGenero" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,18 @@
+﻿@model Logica_de_Negocio.ViewModels.GeneroViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Género";
+}
+
+<div class="container">
+    <div class="card bg-dark p-2">
+        <h2 class="text-white card-header">¿Eliminar este género?</h2>
+        <h4 class="text-white p-4">@Model.name</h4>
+
+        <form asp-action="ConfirmarEliminarGenero">
+            <input type="hidden" asp-for="IdGenero" name="id" />
+            <button type="submit" class="btn btn-outline-danger">Confirmar</button>
+            <a asp-action="MantenimientoDeGeneros" class="btn btn-outline-info">Cancelar</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿@model Logica_de_Negocio.ViewModels.ProductoraViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Productora";
+}
+
+<div class="container">
+    <div class="card bg-dark text-white p-4">
+        <h2 class="card-header">¿Eliminar esta productora?</h2>
+        <h3 class="p-2">@Model.name</h3>
+
+        <form asp-action="ConfirmarEliminarProductora">
+            <input type="hidden" asp-for="IdProductora" name="id" />
+            <button type="submit" class="btn btn-outline-danger">Confirmar</button>
+            <a asp-action="MantenimientoDeProductoras" class="btn btn-outline-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>

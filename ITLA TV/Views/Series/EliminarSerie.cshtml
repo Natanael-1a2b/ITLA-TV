@@ -1,0 +1,28 @@
+﻿@model Logica_de_Negocio.ViewModels.SerieViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Serie";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow bg-dark text-white p-4">
+                <h2 class="text-center mb-2 card-header">¿Está seguro que desea eliminar esta serie?</h2>
+                <p class="text-center fw-bold fs-4">@Model.name</p>
+
+                <form asp-action="ConfirmarEliminar" method="post" class="d-flex justify-content-between">
+                    <input type="hidden" asp-for="IdSerie" name="id" />
+
+                    <a asp-action="MantenimientoDeSeries" asp-controller="Home" class="btn btn-outline-info">
+                        <i class="fas fa-times"></i> Cancelar
+                    </a>
+
+                    <button type="submit" class="btn btn-outline-danger">
+                        <i class="fas fa-trash"></i> Aceptar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

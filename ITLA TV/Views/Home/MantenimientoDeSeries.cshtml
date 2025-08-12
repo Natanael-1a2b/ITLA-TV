@@ -1,0 +1,62 @@
+﻿@model List<Logica_de_Negocio.ViewModels.SerieViewModel>
+
+    @{
+        ViewData["Title"] = "Mantenimiento de Series";
+    }
+
+    <h1 class="text-white text-center shadow-sm fw-bold">Bienvenido al mantenimiento de Series</h1>
+
+    <div class="container-fluid d-flex justify-content-center align-content-center">
+        <div class="row mt-4 d-flex">
+            <div class="col-12">
+                <a class="btn btn-outline-success fs-5" asp-action="CrearSerie" asp-controller="Series">
+                 Crear Nueva Serie
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    @if (Model.Count == 0)
+    {
+        //mensaje por si no encontramos nada
+        <h2 class="text-center">No se encontraron series con el nombre "@ViewData["CurrentFilter"]".</h2>
+    }
+
+    <div class="container-fluid mt-3">
+        <div class="row">
+            @if (Model.Count == 0 || Model == null)
+            {
+                <h2 class="text-center">No hay Series disponibles</h2>
+            }
+            else
+            {
+                @foreach (Logica_de_Negocio.ViewModels.SerieViewModel item in Model)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6  text-center">
+                        <div class="card shadow-sm bg-dark text-white card-index mt-3">
+                            <img class="bd-placegolder-img card-img-top" src="@item.Imagen" />
+                            <div class="card-body">
+                                <h4 class="card-title text-center">@item.name</h4>
+                                <p class="card-text">
+                                    <strong>Generos:</strong> @item.Genero1 y @item.Genero2
+                                    <strong>productora:</strong> @item.Productora
+                                </p>
+                               
+                                <div class="d-flex justify-content-between">
+                                   <a class="btn btn-primary btn-sm" asp-action="EditSerie" asp-controller="Series" asp-route-id="@item.IdSerie">
+                                         <i class="fas fa-edit"></i> Editar
+                                    </a>
+                                <a class="btn btn-danger btn-sm" asp-action="EliminarSerie" asp-controller="Series" asp-route-id="@item.IdSerie">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+

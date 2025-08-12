@@ -1,0 +1,105 @@
+﻿@model List<Logica_de_Negocio.ViewModels.SerieViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Formulario de búsqueda -->
+<div class="container">
+    <form asp-action="Index" method="get" class="form-inline my-2 my-lg-0">
+        <div class="input-group">
+            <input type="text" name="searchString" class="form-control text-white bg-dark m-1 " placeholder="Buscar por nombre..." value="@ViewData["CurrentFilter"]" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-success m-1 text-white">Buscar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <!-- Formulario de filtrado por productora -->
+    <div class="col-4 mt-4">
+        <form asp-action="Index" method="get" class="form-inline my-2 my-lg-0">
+            <div class="input-group">
+                <select name="productoraId" class="form-control bg-dark text-white" asp-items="ViewBag.Productoras">
+                    <option value="">Todas las productoras</option>
+                </select>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-light">Filtrar por productora</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Formulario de filtrado por género -->
+    <div class="col-4 mt-4">
+        <form asp-action="Index" method="get" class="form-inline my-2 my-lg-0">
+            <div class="input-group">
+                <select name="generoId" class="form-control bg-dark text-white" asp-items="ViewBag.Generos">
+                    <option value="">Todos los géneros</option>
+                </select>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-light">Filtrar por género</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Formulario de ordenación -->
+    <div class="col-4 mt-4">
+        <form asp-action="Index" method="get" class="form-inline my-2 my-lg-0">
+            <div class="input-group">
+                <select name="sortOrder" class="form-control bg-dark text-white">
+                    <option value="">Ordenar por...</option>
+                    <option value="Nombre">Nombre</option>
+                    <option value="Genero">Género</option>
+                    <option value="Productora">Productora</option>
+                </select>
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-light">Ordenar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@if (Model.Count == 0)
+{
+    //mensaje por si no encontramos nada
+    <h2 class="text-center text-white">No se encontraron series con el nombre "@ViewData["CurrentFilter"]".</h2>
+}
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        @if (Model.Count == 0 || Model == null)
+        {
+            <h2 class="text-center text-white">No hay Series disponibles</h2>
+        }
+        else
+        {
+            @foreach (Logica_de_Negocio.ViewModels.SerieViewModel item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6  text-center">
+                    <div class="card shadow-sm bg-dark text-white card-index mt-3">
+                       <img class="bd-placegolder-img card-img-top" src="@item.Imagen"/>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">@item.name</h4>
+                            <p class="card-text">
+                                <strong>Generos:</strong> @item.Genero1 y @item.Genero2
+                                <strong>productora:</strong> @item.Productora
+                            </p>
+                            <form asp-action="SerieElegida" asp-controller="Home" method="post">
+                                 <input type="hidden" name="id" value="@item.IdSerie"/>
+                                 <button type="submit" class="btn btn-outline-info">Detalles</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

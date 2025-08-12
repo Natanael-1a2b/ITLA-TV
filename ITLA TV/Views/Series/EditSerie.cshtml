@@ -1,0 +1,72 @@
+﻿@model Logica_de_Negocio.ViewModels.SerieViewModel
+
+@{
+    ViewData["Title"] = "Editar Serie";
+}
+
+<div class="container mt-4 text-white">
+    <div class="card bg-dark p-4">
+      <h2 class="text-center card-header">Editar Serie</h2>
+
+      <form asp-action="EditSerie" method="post" class="mt-4">
+        <input type="hidden" asp-for="IdSerie"/>
+
+        <div class="mb-3">
+            <label asp-for="name" class="form-label text-white">Nombre de la serie:</label>
+                <input asp-for="name" class="form-control bg-secondary text-white" />
+            <span asp-validation-for="name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Imagen" class="form-label text-white">Imagen de portada:</label>
+                <input asp-for="Imagen" class="form-control bg-secondary text-white" />
+            <span asp-validation-for="Imagen" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="EnlaceYouTube" class="form-label text-white">Enlace del video de YouTube:</label>
+                <input asp-for="EnlaceYouTube" class="form-control bg-secondary text-white" />
+            <span asp-validation-for="EnlaceYouTube" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ProductoraId" class="form-label text-white">Productora:</label>
+                <select asp-for="ProductoraId" asp-items="ViewBag.Productoras" class="form-select bg-secondary text-white">
+                <option value="">-- Seleccione una productora --</option>
+            </select>
+            <span asp-validation-for="ProductoraId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Genero1Id" class="form-label text-white">Género primario:</label>
+                <select asp-for="Genero1Id" asp-items="ViewBag.Generos" class="form-select bg-secondary text-white">
+                <option value="">-- Seleccione un género --</option>
+            </select>
+            <span asp-validation-for="Genero1Id" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Genero2Id" class="form-label text-white">Género secundario:</label>
+                <select asp-for="Genero2Id" asp-items="ViewBag.Generos" class="form-select bg-secondary text-white">
+                <option value="">-- Seleccione un género (opcional) --</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="description" class="form-label text-white">Descripción:</label>
+                <textarea asp-for="description" class="form-control bg-secondary text-white" rows="3"></textarea>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a asp-action="MantenimientoDeSeries" asp-controller="Home" class="btn btn-outline-info">Volver atrás</a>
+            <button type="submit" class="btn btn-outline-success">Guardar Cambios</button>
+        </div>
+      </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

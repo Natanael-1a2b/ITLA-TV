@@ -1,0 +1,73 @@
+﻿@model Logica_de_Negocio.ViewModels.SerieViewModel
+
+@{
+    ViewData["Title"] = "Crear Nueva Serie";
+}
+
+<div class="container my-5">
+    <div class="card bg-dark text-white">
+        <div class="card-header text-center">
+            <h1 class="mb-0">Crear Nueva Serie</h1>
+        </div>
+        <div class="card-body">
+            <form asp-action="CrearSerie" method="post">
+                <div class="form-group mb-3">
+                    <label asp-for="name" class="form-label">Nombre de la Serie</label>
+                    <input asp-for="name" class="form-control bg-secondary text-white" />
+                    <span asp-validation-for="name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Imagen" class="form-label">URL de la Imagen</label>
+                    <input asp-for="Imagen" class="form-control bg-secondary text-white" />
+                    <span asp-validation-for="Imagen" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="EnlaceYouTube" class="form-label">URL de YouTube</label>
+                    <input asp-for="EnlaceYouTube" class="form-control bg-secondary text-white" />
+                    <span asp-validation-for="EnlaceYouTube" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="ProductoraId" class="form-label">Productora</label>
+                    <select asp-for="ProductoraId" asp-items="ViewBag.Productoras" class="form-select bg-secondary text-white">
+                        <option value="">Seleccione una productora</option>
+                    </select>
+                    <span asp-validation-for="ProductoraId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Genero1Id" class="form-label">Género Primario</label>
+                    <select asp-for="Genero1Id" asp-items="ViewBag.Generos" class="form-select bg-secondary text-white">
+                        <option value="">Seleccione un género</option>
+                    </select>
+                    <span asp-validation-for="Genero1Id" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Genero2Id" class="form-label">Género Secundario (Opcional)</label>
+                    <select asp-for="Genero2Id" asp-items="ViewBag.Generos" class="form-select bg-secondary text-white">
+                        <option value="">Seleccione un género</option>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="description" class="form-label">Descripción</label>
+                    <textarea asp-for="description" class="form-control bg-secondary text-white" rows="3"></textarea>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-action="MantenimientoDeSeries" asp-controller="Home" class="btn btn-outline-info">Volver</a>
+                    <button type="submit" class="btn btn-outline-success">Crear Serie</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

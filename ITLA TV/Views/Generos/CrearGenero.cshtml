@@ -1,0 +1,35 @@
+﻿@model Logica_de_Negocio.ViewModels.GeneroViewModel
+
+@{
+    ViewData["Title"] = "Crear Género";
+}
+
+<div class="container">
+    <div class="card bg-dark">
+        <h1 class="text-white card-header">Crear Género</h1>
+
+        <form asp-action="CrearGenero">
+            <div class="form-group text-white p-2">
+                <label asp-for="name">Nombre</label>
+                <input asp-for="name" class="form-control bg-secondary text-white" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group text-white p-2">
+                <label asp-for="description">Descripción (Opcional)</label>
+                <textarea asp-for="description" class="form-control bg-secondary text-white" rows="3"></textarea>
+            </div>
+
+            <div class="mt-2 p-2">
+                <button type="submit" class="btn btn-outline-success">Crear</button>
+                <a asp-action="MantenimientoDeGeneros" class="btn btn-outline-danger">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
